@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:commandButton styleClass="botao"
+				action="#{itemController.listAll()}" value="Listar" />
+			
+			<h:dataTable styleClass="tabelaConsulta" headerClass="dtHeader"
+				rowClasses="linha1, linha2" var="j"
+				value="#{itemController.itemJoia}">
+				<h:column>
+					<f:facet name="header">LOTE</f:facet>
+					<h:outputText value="#{j.lote.codigo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">TIPO</f:facet>
+					<h:outputText value="#{j.tipoObjeto.descricao}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">ITEM</f:facet>
+					<h:outputText value="#{j.codigo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">DESCRIÇÃO</f:facet>
+					<h:outputText value="#{j.descricao}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">PESO</f:facet>
+					<h:outputText value="#{j.peso}">
+						<f:convertNumber pattern="0.00gr" minFractionDigits="2" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">VALOR</f:facet>
+					<h:outputText value="#{j.valor}">
+						<f:convertNumber currencySymbol="R$" pattern="#,##0.00"
+							minFractionDigits="2" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">OBSERVAÇÕES</f:facet>
+					<h:outputText value="#{j.observacoes}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="formUm">
+			<h:messages style="list-style: none;" globalOnly="true"
+				showSummary="true" />
+			<h:panelGrid>
+				<h:outputText value="Informe o código do ítem: " />
+				<h:inputText styleClass="inptus"
+					value="#{itemController.itemCodigo}" required="true" requiredMessage="Campo Obrigatório" id="inpPesq"/>
+				<h:message for="inpPesq"/>
+				<h:commandButton styleClass="botao" value="Pesquisar"
+					action="#{itemController.buscar}">
+					<f:ajax execute="@form" render=":formUm :formDois" />
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>
+		<h:form id="formDois">
+			<h:panelGrid styleClass="tabelaFormConsultaVitrine" columns="2" rendered="#{itemController.exibir == true}">
+					<h:outputText styleClass="coluna1"  value="LOTE" />
+					<h:outputText value="#{itemController.item.lote.codigo}" />
+					<h:outputText styleClass="coluna1" value="TIPO" />
+					<h:outputText value="#{itemController.item.tipoObjeto.codigo}" />
+					<h:outputText styleClass="coluna1" value="ITEM" />
+					<h:outputText value="#{itemController.item.codigo}" />
+					<h:outputText styleClass="coluna1" value="DESCRIÇÃO" />
+					<h:outputText value="#{itemController.item.descricao}" />
+					<h:outputText styleClass="coluna1" value="PESO" />
+					<h:outputText value="#{itemController.item.peso}">
+					<f:convertNumber pattern="0.00g" minFractionDigits="2" />
+				</h:outputText>
+					<h:outputText styleClass="coluna1" value="VALOR" />
+					<h:outputText value="#{itemController.item.valor}">
+					<f:convertNumber currencySymbol="R$" pattern="#,##0.00"
+						minFractionDigits="2" />
+				</h:outputText>
+					<h:outputText styleClass="coluna1" value="OBSERVAÇÕES" /> 
+					<h:outputText value="#{itemController.item.observacoes}" />
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
