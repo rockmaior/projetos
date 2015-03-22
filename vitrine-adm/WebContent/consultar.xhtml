@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable
+			styleClass="tabelaConsulta"
+			headerClass="dtHeader"
+			rowClasses="linha1, linha2" value="#{cadastroBean.listItems}" var="item">
+				<h:column>
+					<f:facet name="header">Nº Lote</f:facet>
+					<h:outputText value="#{item.lote.codigo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nº Item</f:facet>
+					<h:outputText value="#{item.codigo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo de Objeto</f:facet>
+					<h:outputText value="#{item.tipoObjeto.descricao}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Descrição</f:facet>
+					<h:outputText value="#{item.descricao}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Peso</f:facet>
+					<h:outputText value="#{item.peso}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Valor</f:facet>
+					<h:outputText value="#{item.valor}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Observações</f:facet>
+					<h:outputText value="#{item.observacoes}" />
+				</h:column>
+				<h:outputText value="#{item.codigo}" />
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/layout.xhtml">
+<ui:define name="content">
+	<h:form id="formCadastro">
+		<h:messages id="msgCadastro" style="list-style: none;" globalOnly="true" showSummary="true" />
+		<h:panelGrid columns="3" id="pgIncluir">
+			<h:outputText id="ipLote" value="Informe o nº do lote:" />
+			<h:selectOneMenu id="slctMLote" styleClass="inptus" value="#{cadastroBean.item.lote}"
+				converter="loteConverter" required="true" requiredMessage="Campo Obrigatório">
+				<f:selectItem noSelectionOption="true" itemLabel="Selecione o lote" />
+				<f:selectItems value="#{cadastroBean.listLotes}" var="l"
+					itemValue="#{l}" itemLabel="#{l.codigo}" />
+			</h:selectOneMenu>
+			<h:message for="slctMLote" />
+			
+			<h:outputText id="ipTipo" value="Informe o tipo de objeto:" />
+			<h:selectOneMenu id="slctTipo" styleClass="inptus" value="#{cadastroBean.item.tipoObjeto}"
+				converter="tipoObjetoConverter" required="true" requiredMessage="Campo Obrigatório">
+				<f:selectItem noSelectionOption="true"
+					itemLabel="Selecione tipo de objeto" />
+				<f:selectItems value="#{cadastroBean.listTipoObjetos}" var="t"
+					itemValue="#{t}" itemLabel="#{t.descricao}" />
+			</h:selectOneMenu>
+			<h:message for="slctTipo"/>
+			
+			
+			<h:outputText id="ipPeso" value="Qual o peso? " />
+			<h:inputText id="opPeso" styleClass="inptus" value="#{cadastroBean.item.peso}"
+						required="true" requiredMessage="Campo Obrigatório">
+				<f:convertNumber pattern="0.00" minFractionDigits="2"/>
+			</h:inputText>
+			<h:message for="opPeso"/>
+			
+			<h:outputText id="otItem" value="Qual é o valor do item?" />
+			<h:inputText id="itItem" styleClass="inptus" value="#{cadastroBean.item.valor}"
+				required="true" requiredMessage="Campo Obrigatório">
+				<f:convertNumber pattern="#,##0.00" minFractionDigits="2" />
+			</h:inputText>
+			<h:message for="itItem"/>
+			
+			<h:outputText id="dscItem" value="Descrição do item: " />
+			<h:inputText id="itDesc" styleClass="inptus" value="#{cadastroBean.item.descricao}" required="true" requiredMessage="Campo Obrigatório"/>
+			<h:message for="itDesc"/>
+			
+			<h:outputText id="otObs"  value="Alguma observação importante?" />
+			<h:inputText id="itObs" styleClass="inptus" value="#{cadastroBean.item.observacoes}" />
+		</h:panelGrid>
+		<hr />
+		<h:commandButton styleClass="botao" action="#{cadastroBean.salvar}" value="Cadastrar" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

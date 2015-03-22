@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="formGrid">
+			<h:panelGroup>
+				<h:panelGrid columns="8">
+					<h:outputText value="Lote" />
+					<h:outputText value="Código" />
+					<h:outputText value="Tipo Objeto" />
+					<h:outputText value="Descrição" />
+					<h:outputText value="Peso" />
+					<h:outputText value="Valor" />
+					<h:outputText value="Observações" />
+					<h:outputText value="Ações" />
+
+					<h:outputText value="#{cadastroBean.item.lote.codigo}" />
+					<h:outputText value="#{cadastroBean.item.codigo}" />
+					<h:outputText value="#{cadastroBean.item.tipoObjeto.descricao}" />
+					<h:outputText value="#{cadastroBean.item.descricao}" />
+					<h:outputText value="#{cadastroBean.item.peso}" />
+					<h:outputText value="#{cadastroBean.item.valor}" />
+					<h:outputText value="#{cadastroBean.item.observacoes}" />
+					<h:commandButton
+						style="font-size: 18px;
+						border-color: #EDEDED;
+						background: -webkit-linear-gradient(top, #058ce0 0%, #047ECB 100%);
+						background: linear-gradient(to bottom, #058ce0 0%, #047ecb 100%);
+						color: #fff;
+						width: 100px;
+						height: 40px;
+						margin-top: 5px;"
+						value="Excluir" 
+						action="#{cadastroBean.excluir}"
+						onclick="if (!confirm('Confirma a exclusão?')) return false;" />
+				</h:panelGrid>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
